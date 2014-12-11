@@ -1,0 +1,114 @@
+a = imread('C:\Users\Anirudh\Desktop\Desktop\New folder\Useless Pics\example.jpg');
+b = rgb2gray(a);
+mat0 = graycomatrix(b, 'Offset', [0 1]);
+mat45 = graycomatrix(b, 'Offset', [-1 1]);
+mat90 = graycomatrix(b, 'Offset', [-1 0]);
+mat135 = graycomatrix(b, 'Offset', [-1 -1]);
+R = size(b,1)*size(b,2);
+mat0 = mat0/R;
+mat45 = mat45/R;
+mat90 = mat90/R;
+mat135 = mat135/R;
+row = size(mat,1);
+col = size(mat,2);
+asm0 = 0;
+for i=1:1:row
+for j=1:1:col
+asm0 = asm0 + mat0(i,j)*mat0(i,j);
+end
+end
+asm45 = 0;
+for i=1:1:row
+for j=1:1:col
+asm45 = asm45 + mat45(i,j)*mat45(i,j);
+end
+end
+asm90 = 0;
+for i=1:1:row
+for j=1:1:col
+asm90 = asm90 + mat90(i,j)*mat90(i,j);
+end
+end
+asm135 = 0;
+for i=1:1:row
+for j=1:1:col
+asm135 = asm135 + mat135(i,j)*mat135(i,j);
+end
+end
+asm=0;
+asm = (asm0+asm45+asm90+asm135)/4;
+ent0 = 0;
+for i=1:1:row
+for j=1:1:col
+ent0 = ent0 + mat0(i,j)*log(mat0(i,j));
+end
+end
+ent0 = -ent0;
+ent45 = 0;
+for i=1:1:row
+for j=1:1:col
+ent45 = ent45 + mat45(i,j)*log(mat45(i,j));
+end
+end
+ent45 = -ent45;
+ent135 = 0;
+for i=1:1:row
+for j=1:1:col
+ent135 = ent135 + mat135(i,j)*log(mat135(i,j));
+end
+end
+ent135 = -ent135;
+ent = 0;
+ent = (ent0 + ent45 + ent135)/3;
+idm0 = 0;
+for i=1:1:row
+for j=1:1:col
+idm0 = idm0 + (1/(1+(i-j)*(i-j)))*mat0(i,j);
+end
+end
+idm45 = 0;
+for i=1:1:row
+for j=1:1:col
+idm45 = idm45 + (1/(1+(i-j)*(i-j)))*mat45(i,j);
+end
+end
+idm90 = 0;
+for i=1:1:row
+for j=1:1:col
+idm90 = idm90 + (1/(1+(i-j)*(i-j)))*mat90(i,j);
+end
+end
+idm135 = 0;
+for i=1:1:row
+for j=1:1:col
+idm135 = idm135 + (1/(1+(i-j)*(i-j)))*mat135(i,j);
+end
+end
+idm = 0;
+idm = (idm0+idm45+idm90+idm135)/4;
+contrast0 = 0;
+for i=1:1:row
+for j=1:1:col
+contrast0 = contrast0 + abs(i-j)*abs(i-j)*mat0(i,j);
+end;
+end;
+contrast45 = 0;
+for i=1:1:row
+for j=1:1:col
+contrast45 = contrast45 + abs(i-j)*abs(i-j)*mat45(i,j);
+end;
+end;
+contrast90 = 0;
+for i=1:1:row
+for j=1:1:col
+contrast90 = contrast90 + abs(i-j)*abs(i-j)*mat90(i,j);
+end;
+end;
+contrast135 = 0;
+for i=1:1:row
+for j=1:1:col
+contrast135 = contrast135 + abs(i-j)*abs(i-j)*mat135(i,j);
+end;
+end;
+contrast = 0;
+contrast = (contrast0+contrast45+contrast90+contrast135)/4;
