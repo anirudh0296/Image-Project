@@ -9,8 +9,8 @@ mat0 = mat0/R;
 mat45 = mat45/R;
 mat90 = mat90/R;
 mat135 = mat135/R;
-row = size(mat,1);
-col = size(mat,2);
+row = size(mat0,1);
+col = size(mat0,2);
 asm0 = 0;
 for i=1:1:row
 for j=1:1:col
@@ -43,7 +43,7 @@ for j=1:1:col
 ent0 = ent0 + mat0(i,j)*log(mat0(i,j));
 end
 end
-ent0 = -ent0;
+ent90 = -ent0;
 ent45 = 0;
 for i=1:1:row
 for j=1:1:col
@@ -87,28 +87,80 @@ end
 idm = 0;
 idm = (idm0+idm45+idm90+idm135)/4;
 contrast0 = 0;
+for k=0:1:7
 for i=1:1:row
 for j=1:1:col
 contrast0 = contrast0 + abs(i-j)*abs(i-j)*mat0(i,j);
 end;
 end;
+end;
 contrast45 = 0;
+for k=0:1:7
 for i=1:1:row
 for j=1:1:col
 contrast45 = contrast45 + abs(i-j)*abs(i-j)*mat45(i,j);
 end;
 end;
+end;
 contrast90 = 0;
+for k=0:1:7
 for i=1:1:row
 for j=1:1:col
 contrast90 = contrast90 + abs(i-j)*abs(i-j)*mat90(i,j);
 end;
 end;
+end;
 contrast135 = 0;
+for k=0:1:7
 for i=1:1:row
 for j=1:1:col
 contrast135 = contrast135 + abs(i-j)*abs(i-j)*mat135(i,j);
 end;
 end;
+end;
 contrast = 0;
 contrast = (contrast0+contrast45+contrast90+contrast135)/4;
+
+sument0 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat0(i,j);
+end;
+end;
+sument0 = sument0 + sum*log(sum);
+end;
+
+sument45 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat0(i,j);
+end;
+end;
+sument45 = sument45 + sum*log(sum);
+end;
+sument90 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat0(i,j);
+end;
+end;
+sument90 = sument90 + sum*log(sum);
+end;
+sument135 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat0(i,j);
+end;
+end;
+sument135 = sument135 + sum*log(sum);
+end;
+sument = 0;
+sument = (sument0 + sument45 + sument90 + sument135)/4;
