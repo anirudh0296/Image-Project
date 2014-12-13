@@ -1,0 +1,50 @@
+sumavg0 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat0(i,j);
+end;
+end;
+sumavg0 = sumavg0 + sum*i;
+end;
+
+sumavg45 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat45(i,j);
+end;
+end;
+sumavg45 = sumavg45 + sum*i;
+end;
+
+
+sumavg90 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat90(i,j);
+end;
+end;
+sumavg90 = sumavg90 + sum*i;
+end;
+
+
+
+sumavg135 = 0;
+for k=2:1:16
+sum = 0;
+for i=1:1:row
+for j=1:1:col
+sum = sum + mat135(i,j);
+end;
+end;
+sumavg135 = sumavg135 + sum*i;
+end;
+
+sumavg = 0;
+sumavg = (sumavg0 + sumavg45 + sumavg90 + sumavg135)/4;
+
